@@ -1,9 +1,9 @@
-name: Docker Runner - Production
+name: Docker Runner - Development
 
 on:
   push:
     branches:
-      - main
+      - dev
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -12,13 +12,13 @@ concurrency:
 jobs:
   run:
     runs-on: self-hosted
-    environment: production
+    environment: development
 
     steps:
       - uses: actions/checkout@v4
 
       - name: Run Container
-        run: docker compose up -d --build
+        run: docker compose -p dev up -d --build
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           LAVALINK_PASSWORD: ${{ secrets.LAVALINK_PASSWORD }}
