@@ -1,4 +1,4 @@
-name: Docker Runner - Development
+name: Docker Container Remove - Development
 
 on: workflow_dispatch
 
@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Remove Container
-        run: docker container rm dev -f
+        run: docker container rm prod -f
 
       - name: Cleanup Unused Images
         run: docker image prune -f
