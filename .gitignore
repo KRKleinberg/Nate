@@ -12,3 +12,14 @@ Cargo.lock
 
 # MSVC Windows builds of rustc generate these, which store debugging information
 *.pdb
+
+# dotenv
+*.env
+*.env.development.local
+*.env.test.local
+*.env.production.local
+*.env.local
+
+
+# Added by cargo
+/target
