@@ -1,9 +1,0 @@
-version: "3.8"
-services:
-  main:
-    build: .
-    container_name: Nate
-    environment:
-      - DISCORD_BOT_TOKEN
-      - LAVALINK_PASSWORD
-    restart: always
