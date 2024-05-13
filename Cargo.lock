@@ -1280,6 +1280,7 @@ dependencies = [
 name = "nate"
 version = "0.1.0"
 dependencies = [
+ "cmake",
  "dotenv",
  "futures",
  "lavalink-rs",
