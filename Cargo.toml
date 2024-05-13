@@ -19,6 +19,10 @@ version = "0.11"
 default-features = false
 features = ["macros", "native-tls", "songbird", "serenity"]
 
+[dependencies.openssl]
+version = "0.10.64"
+features = ["vendored"]
+
 [dependencies.poise]
 version = "0.6.1"
 default-features = false
