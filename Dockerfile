@@ -1,4 +1,5 @@
-FROM lukemathwalker/cargo-chef:latest-rust-1 AS chef
+FROM rust:latest AS chef
+RUN cargo install cargo-chef
 WORKDIR /nate
 
 FROM chef AS planner
@@ -11,8 +12,7 @@ RUN cargo chef cook --release --recipe-path recipe.json
 COPY . .
 RUN cargo build --release --bin nate
 
-FROM debian:bookworm-slim AS runtime
-RUN apt-get update -y && apt-get install openssl -y
+FROM ubuntu:latest AS runtime
 WORKDIR /nate
 COPY --from=builder /nate/target/release/nate /usr/local/bin
 ENTRYPOINT [ "/usr/local/bin/nate" ]
