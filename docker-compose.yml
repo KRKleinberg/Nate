@@ -6,5 +6,3 @@ services:
       - DISCORD_BOT_TOKEN
       - LAVALINK_PASSWORD
     restart: unless-stopped
-    networks:
-      - lavalink
