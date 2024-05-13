@@ -1,8 +1,7 @@
 services:
-  nate:
-    build:
-      context: .
-      target: final
+  main:
+    build: .
+    container_name: Nate
     environment:
       - DISCORD_BOT_TOKEN
       - LAVALINK_PASSWORD
