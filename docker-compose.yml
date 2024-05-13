@@ -1,0 +1,9 @@
+services:
+  nate:
+    build:
+      context: .
+      target: final
+    environment:
+      - DISCORD_BOT_TOKEN
+      - LAVALINK_PASSWORD
+    restart: always
