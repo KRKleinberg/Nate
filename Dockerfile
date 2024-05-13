@@ -12,7 +12,8 @@ RUN cargo chef cook --release --recipe-path recipe.json
 COPY . .
 RUN cargo build --release --bin nate
 
-FROM ubuntu:latest AS runtime
+FROM debian:bookworm-slim AS runtime
+RUN apt-get update && apt-get install libopus-dev build-essential autoconf automake libtool m4 -y
 WORKDIR /nate
 COPY --from=builder /nate/target/release/nate /usr/local/bin
 ENTRYPOINT [ "/usr/local/bin/nate" ]
