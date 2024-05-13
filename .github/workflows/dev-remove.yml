@@ -1,6 +1,7 @@
 name: Docker Container Remove - Development
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
 
 jobs:
   run:
