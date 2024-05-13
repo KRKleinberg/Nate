@@ -13,7 +13,7 @@ COPY . .
 RUN cargo build --release --bin nate
 
 FROM debian:bookworm-slim AS runtime
-RUN apt-get update && apt-get install libopus-dev build-essential autoconf automake libtool m4 yt-dlp -y
+RUN apt-get update && apt-get install libopus-dev build-essential autoconf automake libtool m4 yt-dlp cmake -y
 WORKDIR /nate
 COPY --from=builder /nate/target/release/nate /usr/local/bin
 ENTRYPOINT [ "/usr/local/bin/nate" ]
