@@ -1,8 +1,10 @@
 services:
-  main:
+  nate:
     build: .
-    container_name: Nate
+    container_name: nate
     environment:
       - DISCORD_BOT_TOKEN
       - LAVALINK_PASSWORD
-    restart: always
+    restart: unless-stopped
+    networks:
+      - lavalink
