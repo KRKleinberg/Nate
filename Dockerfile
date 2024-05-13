@@ -14,7 +14,7 @@ RUN cargo build --release --bin nate
 
 FROM debian:bookworm-slim AS runtime
 RUN apt-get update
-RUN apt-get install libopus-dev build-essential autoconf automake libtool m4 yt-dlp cmake -y
+RUN apt-get install libopus-dev build-essential autoconf automake libtool m4 yt-dlp -y
 RUN cmake --version
 WORKDIR /nate
 COPY --from=builder /nate/target/release/nate /usr/local/bin
