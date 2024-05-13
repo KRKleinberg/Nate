@@ -12,7 +12,7 @@ COPY . .
 RUN cargo build --release --bin nate
 
 FROM debian:bookworm-slim AS runtime
-RUN apt-get update -y && apt-get upgrade -y
+RUN apt-get update -y && apt-get install libssl -y
 WORKDIR /nate
 COPY --from=builder /nate/target/release/nate /usr/local/bin
 ENTRYPOINT [ "/usr/local/bin/nate" ]
