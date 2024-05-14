@@ -1,18 +1,5 @@
 FROM rust:latest AS chef
-RUN cargo install cargo-chef
-RUN apt-get update && \
-	apt-get -y install \
-	libprotobuf-dev \
-	protobuf-compiler \
-	cmake \
-	libopus-dev \
-	build-essential \
-	autoconf \
-	automake \
-	libtool \
-	m4 \
-	yt-dlp \
-	ffmpeg
+RUN cargo install cargo-che
 WORKDIR /nate
 
 FROM chef AS planner
@@ -26,6 +13,19 @@ COPY . .
 RUN RUST_BACKTRACE=1 cargo build --release --bin nate
 
 FROM debian:bookworm-slim AS runtime
+RUN apt-get update && \
+	apt-get -y install \
+	libprotobuf-dev \
+	protobuf-compiler \
+	cmake \
+	libopus-dev \
+	build-essential \
+	autoconf \
+	automake \
+	libtool \
+	m4 \
+	yt-dlp \
+	ffmpeg
 RUN cmake --version
 WORKDIR /nate
 COPY --from=builder /nate/target/release/nate /usr/local/bin
