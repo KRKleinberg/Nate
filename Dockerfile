@@ -13,8 +13,7 @@ COPY . .
 RUN RUST_BACKTRACE=1 cargo build --release --bin nate
 
 FROM debian:bookworm-slim AS runtime
-RUN apt-get update && \
-	apt-get -y install \
+RUN apt-get update && apt-get -y install \
 	libprotobuf-dev \
 	protobuf-compiler \
 	cmake \
