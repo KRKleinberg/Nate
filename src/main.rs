@@ -42,7 +42,7 @@ async fn on_error(error: poise::FrameworkError<'_, Data, Error>) {
     }
 }
 
-#[tokio::main]
+#[tokio_rustls::main]
 async fn main() -> Result<(), Error> {
     dotenv().ok();
 
