@@ -8,15 +8,12 @@ RUN cargo chef prepare --recipe-path recipe.json
 
 FROM chef AS builder
 COPY --from=planner /nate/recipe.json recipe.json
-RUN RUST_BACKTRACE=full cargo chef cook --release --recipe-path recipe.json
+RUN cargo chef cook --release --recipe-path recipe.json
 COPY . .
-RUN RUST_BACKTRACE=1 cargo build --release --bin nate
+RUN cargo build --release --bin nate
 
 FROM debian:bookworm-slim AS runtime
 RUN apt-get update && apt-get -y install \
-	libprotobuf-dev \
-	protobuf-compiler \
-	cmake \
 	libopus-dev \
 	build-essential \
 	autoconf \
@@ -25,7 +22,6 @@ RUN apt-get update && apt-get -y install \
 	m4 \
 	yt-dlp \
 	ffmpeg
-RUN cmake --version
 WORKDIR /nate
 COPY --from=builder /nate/target/release/nate /usr/local/bin
 ENTRYPOINT [ "/usr/local/bin/nate" ]
