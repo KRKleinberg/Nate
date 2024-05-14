@@ -1,5 +1,5 @@
 FROM rust:latest AS chef
-RUN cargo install cargo-che
+RUN cargo install cargo-chef
 WORKDIR /nate
 
 FROM chef AS planner
